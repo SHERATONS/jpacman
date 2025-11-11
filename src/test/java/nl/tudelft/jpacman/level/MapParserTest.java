@@ -2,6 +2,7 @@ package nl.tudelft.jpacman.level;
 
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.npc.ghost.Blinky;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -46,5 +47,27 @@ public class MapParserTest {
         Mockito.verify(boardFactory, Mockito.times(26)).createWall();
         Mockito.verify(boardFactory, Mockito.times(10)).createGround();
     }
+
+    /**
+     * Test for the parseMap method (bad map).
+     */
+    @Test
+    public void testParseMapWrong1() {
+        ADDYOURCODEHERE thrown =
+            Assertions.assertThrows(ADDYOURCODEHERE.class, () -> {
+                MockitoAnnotations.initMocks(this);
+                assertNotNull(boardFactory);
+                assertNotNull(levelFactory);
+                MapParser mapParser = new MapParser(levelFactory, boardFactory);
+                ArrayList<String> map = new ArrayList<>();
+                /*
+                Create a map with inconsistent size between
+                each row or contain invalid characters
+                */
+                mapParser.parseMap(map);
+            });
+        Assertions.assertEquals(ADDYOURCODEHERE, thrown.getMessage());
+    }
+
 
 }
